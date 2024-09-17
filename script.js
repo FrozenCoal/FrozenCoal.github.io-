@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
             } else {
                 window.location.hash = this.getAttribute('href');
             }
@@ -23,21 +25,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Change cursor on page load
     document.body.classList.add('custom-cursor');
-
-    // Function to update local time
-    function updateTime() {
-        const now = new Date();
-        const hours = now.getHours().toString().padStart(2, '0');
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const formattedTime = `${hours}:${minutes}`;
-        document.getElementById('time').textContent = formattedTime;
-        document.getElementById('date').textContent = now.toDateString();
-        document.getElementById('timezone').textContent = `(${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
-    }
-
-    // Update the time every minute
-    setInterval(updateTime, 60000);
-
-    // Initial call to display the time immediately
-    updateTime();
 });
